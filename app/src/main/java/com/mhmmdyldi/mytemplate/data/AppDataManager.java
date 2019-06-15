@@ -2,6 +2,7 @@ package com.mhmmdyldi.mytemplate.data;
 
 import android.content.Context;
 
+import com.mhmmdyldi.mytemplate.data.network.ApiHeader;
 import com.mhmmdyldi.mytemplate.data.network.ApiHelper;
 import com.mhmmdyldi.mytemplate.data.network.model.LoginRequest;
 import com.mhmmdyldi.mytemplate.data.network.model.LoginResponse;
@@ -31,6 +32,11 @@ public class AppDataManager implements DataManager{
     @Override
     public void setUserAsLoggedOut() {
 
+    }
+
+    @Override
+    public ApiHeader getApiHeader() {
+        return null;
     }
 
     @Override

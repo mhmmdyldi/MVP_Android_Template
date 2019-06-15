@@ -8,6 +8,7 @@ import com.mhmmdyldi.mytemplate.data.DataManager;
 import com.mhmmdyldi.mytemplate.data.network.ApiHeader;
 import com.mhmmdyldi.mytemplate.data.network.ApiHelper;
 import com.mhmmdyldi.mytemplate.data.network.AppApiHelper;
+import com.mhmmdyldi.mytemplate.data.prefs.PreferencesHelper;
 import com.mhmmdyldi.mytemplate.di.ApiInfo;
 import com.mhmmdyldi.mytemplate.di.ApplicationContext;
 
@@ -51,7 +52,10 @@ public class ApplicationModule {
     @Provides
     @Singleton
     ApiHeader.ProtectedApiHeader provideProtectedApiHeader(@ApiInfo String apiKey, PreferencesHelper preferencesHelper){
-
+        return new ApiHeader.ProtectedApiHeader(
+                apiKey,
+                preferencesHelper.getCurrentUserId(),
+                preferencesHelper.getAccessToken());
     }
 
 
