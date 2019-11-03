@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mhmmdyldi.mytemplate.R;
+import com.mhmmdyldi.mytemplate.TemplateAppApplication;
 import com.mhmmdyldi.mytemplate.di.component.ActivityBaseComponent;
 import com.mhmmdyldi.mytemplate.di.component.DaggerActivityBaseComponent;
 import com.mhmmdyldi.mytemplate.di.modules.ActivityModule;
@@ -34,6 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpActiv
         super.onCreate(savedInstanceState);
         activityBaseComponent = DaggerActivityBaseComponent.builder()
                 .activityModule(new ActivityModule(this))
+                .applicationBaseComponent(((TemplateAppApplication) getApplication()).getmApplicationBaseComponent())
                 .build();
     }
 
