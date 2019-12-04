@@ -38,8 +38,11 @@ public class LoginActivity extends BaseActivity implements LoginMvpView{
 
     @OnClick(R.id.button_server_login)
     void onServerLoginClicked(View view){
-        mPresenter.onServerLoginTouched("testUser", "testPass");
+        mPresenter.onServerLoginTouched(null, "testPass");
     }
 
+    @Override
+    public void launchMainActivity() {
 
+    }
 }

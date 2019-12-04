@@ -9,6 +9,6 @@ public interface ApiHelper {
 
     ApiHeader getApiHeader();
 
-    Single<LoginResponse> doServerLoginWScall(LoginRequest.ServerLoginRequest request);
+    Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request);
 
 }

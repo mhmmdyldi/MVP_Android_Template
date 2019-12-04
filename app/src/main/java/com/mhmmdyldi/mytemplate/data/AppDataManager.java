@@ -40,7 +40,7 @@ public class AppDataManager implements DataManager{
     }
 
     @Override
-    public Single<LoginResponse> doServerLoginWScall(LoginRequest.ServerLoginRequest request) {
+    public Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request) {
         return null;
     }
 }

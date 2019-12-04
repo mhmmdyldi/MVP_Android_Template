@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.mhmmdyldi.mytemplate.R;
 import com.mhmmdyldi.mytemplate.TemplateAppApplication;
 import com.mhmmdyldi.mytemplate.di.component.ActivityBaseComponent;
@@ -118,7 +119,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpActiv
                 message, Snackbar.LENGTH_SHORT);
         View sbView = snackbar.getView();
         TextView textView = (TextView) sbView
-                .findViewById(android.support.design.R.id.snackbar_text);
+                .findViewById(R.id.snackbar_text);
         textView.setTextColor(ContextCompat.getColor(this, R.color.white));
         snackbar.show();
     }

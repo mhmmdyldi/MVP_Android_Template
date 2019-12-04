@@ -1,15 +1,15 @@
 package com.mhmmdyldi.mytemplate.ui.login;
 
-import android.util.Log;
-
 import com.mhmmdyldi.mytemplate.R;
 import com.mhmmdyldi.mytemplate.data.DataManager;
+import com.mhmmdyldi.mytemplate.data.network.model.LoginRequest;
+import com.mhmmdyldi.mytemplate.data.network.model.LoginResponse;
 import com.mhmmdyldi.mytemplate.ui.base.BasePresenter;
-import com.mhmmdyldi.mytemplate.ui.base.MvpActivityView;
 
 import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
 
 public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> implements LoginMvpPresenter<V>{
     private static final String TAG = LoginPresenter.class.getName();
@@ -30,7 +30,23 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
             return;
         }
         getmMvpActivityView().showLoading();
-//        getCompositeDisposable().add();
+        getCompositeDisposable().add(getDataManager()
+                .doServerLoginApiCall(new LoginRequest.ServerLoginRequest("Email", "Password"))
+                .subscribeOn()
+                .observeOn()
+                .subscribe(new Consumer<LoginResponse>() {
+                    @Override
+                    public void accept(LoginResponse loginResponse) throws Exception {
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                })
+        );
+        getmMvpActivityView().launchMainActivity();
 
     }
 }
