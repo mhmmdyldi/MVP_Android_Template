@@ -23,6 +23,9 @@ public class AppApiHelper implements ApiHelper {
     private ApiHeader mApiHeader;
 
     @Inject
+    AppApiService appApiService;
+
+    @Inject
     public AppApiHelper(ApiHeader apiHeader) {
         mApiHeader = apiHeader;
     }
@@ -34,32 +37,7 @@ public class AppApiHelper implements ApiHelper {
 
     @Override
     public Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request) {
-        Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-                .registerTypeAdapter(GithubRepo.class, new GithubRepoDeserializer())
-                .create();
-
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public okhttp3.Response intercept(Chain chain) throws IOException {
-                        Request originalRequest = chain.request();
-
-                        Request.Builder builder = originalRequest.newBuilder().header("Authorization",
-                                Credentials.basic(username, password));
-
-                        Request newRequest = builder.build();
-                        return chain.proceed(newRequest);
-                    }
-                }).build();
-        Retrofit rxTutorialRetrofit = new Retrofit.Builder()
-                .baseUrl(ApiEndPoint.ENDPOINT_SERVER_LOGIN)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(httpClient.)
-                .build();
-
-        githubAPI = retrofit.create(GithubAPI.class);
+        appApiService.getReposForUser()
     }
 
 
